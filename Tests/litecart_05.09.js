@@ -85,9 +85,7 @@ module.exports = {
 
     'Zones sorting USA': function (browser) {
         this.lc
-            // .waitForElementVisible('@Countries', client.globals.waitElementPause)
             .click('@Countries')
-            .expect.element('@headerText').text.to.equal('Countries')
         browser
             .click('#content > form > table > tbody > tr:nth-child(225) > td:nth-child(5) > a')
             .elements('css selector', '[id=table-zones] tr', function (usa) {
@@ -117,7 +115,78 @@ module.exports = {
                     })
                 }
             })
-    }
+    },
+
+
+
+    'GeoZones sorting Ca': function (browser) {
+        this.lc
+            .click('@GeoZones')
+        browser
+            .click('#content > form > table > tbody > tr:nth-child(2) > td:nth-child(3) > a')
+            .elements('css selector', '[id=table-zones] tr', function (zca) {
+                console.log('Checking sorting for: ' + [zca.value.length - 2] + ' zones');
+                let Prev = '';
+                for (var i = 0; i < [zca.value.length - 2]; i++) {
+                    let local = i
+                    let sel = '[id = table-zones] tr:nth-child(' + [local + 2] + ') td:nth-child(3) select option[selected="selected"]';
+                    browser.getAttribute(sel, 'innerText', function (txt) {
+                        if (txt.value.length != 0) {
+                            if (Prev === ''
+                            ) {
+                                Prev = txt.value;
+                            }
+                            else {
+                                if (Prev <= txt.value) {
+                                    // console.log(Prev + ' <= ' + txt.value)
+                                    console.log('OK');
+                                }
+                                else {
+                                    console.log('! ' + Prev + ' >>>>>> ' + txt.value + ' EXIT');
+                                    browser.waitForElementVisible('body1', 100)
+                                }
+                                Prev = txt.value;
+                            }
+                        }
+                    })
+                }
+            })
+    },
+
+    'GeoZones sorting USA': function (browser) {
+        this.lc
+            .click('@GeoZones')
+        browser
+            .click('#content > form > table > tbody > tr:nth-child(3) > td:nth-child(3) > a')
+            .elements('css selector', '[id=table-zones] tr', function (zus) {
+                console.log('Checking sorting for: ' + [zus.value.length - 2] + ' zones');
+                let Prev = '';
+                for (var i = 0; i < [zus.value.length - 2]; i++) {
+                    let local = i
+                    let sel = '[id = table-zones] tr:nth-child(' + [local + 2] + ') td:nth-child(3) select option[selected="selected"]';
+                    browser.getAttribute(sel, 'innerText', function (txt) {
+                        if (txt.value.length != 0) {
+                            if (Prev === ''
+                            ) {
+                                Prev = txt.value;
+                            }
+                            else {
+                                if (Prev <= txt.value) {
+                                    // console.log(Prev + ' <= ' + txt.value)
+                                    console.log('OK');
+                                }
+                                else {
+                                    console.log('! ' + Prev + ' >>>>>> ' + txt.value + ' EXIT');
+                                    browser.waitForElementVisible('body1', 100)
+                                }
+                                Prev = txt.value;
+                            }
+                        }
+                    })
+                }
+            })
+    },
+
 
 };
 
