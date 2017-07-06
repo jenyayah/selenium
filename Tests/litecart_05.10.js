@@ -17,6 +17,10 @@ module.exports = {
         var RegH = ''
         browser
             .waitForElementVisible('#box-campaigns > div > ul > li > a.link > div.name', browser.globals.waitElementPause)
+
+//******* main_reg_price_strike
+
+
             .getTagName('#box-campaigns > div > ul > li > a.link > div.price-wrapper > s', function (strk) {
                 if (strk.value == 's') {
                     console.log('Main Regular Price Font is OK');
@@ -26,6 +30,10 @@ module.exports = {
                     browser.waitForElementVisible('body1', 100)
                 }
             })
+
+
+//******* main_reg_price_color
+
             .getCssProperty('#box-campaigns > div > ul > li > a.link > div.price-wrapper > s', "color", function (priceColor) {
                 // console.log(priceColor.value);
                 var colorString = priceColor.value,
@@ -45,10 +53,15 @@ module.exports = {
                 }
             })
 
+
+//******* main_reg_price_size
+
             .getElementSize('#box-campaigns > div > ul > li > a.link > div.price-wrapper > s', function (mainSize) {
                 RegH = mainSize.value.height
 
             })
+
+//******* main_sale_price_size
 
             .getElementSize('#box-campaigns > div > ul > li > a.link > div.price-wrapper > strong', function (SaleSize) {
                 SaleH = SaleSize.value.height
@@ -63,6 +76,8 @@ module.exports = {
                 }
             })
 
+//******* main_sale_price_bold
+
             .getTagName('#box-campaigns > div > ul > li > a.link > div.price-wrapper > strong', function (bold) {
                 if (bold.value == 'strong') {
                     console.log('Main Sale Price Font is OK');
@@ -72,6 +87,8 @@ module.exports = {
                     browser.waitForElementVisible('body1', 100)
                 }
             })
+
+//******* main_sale_price_color
 
             .getCssProperty('#box-campaigns > div > ul > li > a.link > div.price-wrapper > strong', "color", function (saleColor) {
                 // console.log(saleColor.value);
@@ -160,6 +177,9 @@ module.exports = {
         var itSaleH = ''
         var itRegH = ''
         browser
+
+//******* item_reg_price_strike
+
             .getTagName('#box-product > div.content > div.information > div.price-wrapper > s', function (strk) {
                 if (strk.value == 's') {
                     console.log('Regular Price Font is OK');
@@ -169,6 +189,8 @@ module.exports = {
                     browser.waitForElementVisible('body1', 100)
                 }
             })
+
+//******* item_sale_price_bold
 
             .getTagName('#box-product > div.content > div.information > div.price-wrapper > strong', function (bold) {
                 if (bold.value == 'strong') {
@@ -180,6 +202,7 @@ module.exports = {
                 }
             })
 
+//******* item_reg_price_color
 
             .getCssProperty('#box-product > div.content > div.information > div.price-wrapper > s', "color", function (priceColor) {
                 var colorString = priceColor.value,
@@ -199,10 +222,14 @@ module.exports = {
                 }
             })
 
+//******* item_reg_price_size
+
             .getElementSize('#box-product > div.content > div.information > div.price-wrapper > s', function (itmainSize) {
                 itRegH = itmainSize.value.height
 
             })
+
+//******* item_sale_price_size
 
             .getElementSize('#box-product > div.content > div.information > div.price-wrapper > strong', function (itSaleSize) {
                 itSaleH = itSaleSize.value.height
@@ -217,6 +244,7 @@ module.exports = {
                 }
             })
 
+//******* item_sale_price_color
 
             .getCssProperty('#box-product > div.content > div.information > div.price-wrapper > strong', "color", function (saleColor) {
                 // console.log(saleColor.value);
